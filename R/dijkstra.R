@@ -1,0 +1,96 @@
+#' dijkstra
+#'
+#' @param graph A data frame with three columns: v1, v2, w
+#' @param init_node The starting vector that we are measuring from
+#'
+#' @return Returns a vector with the shortest distances in the graph to
+#' every other vector from the initial vector.
+#' @export
+#'
+#' @examples wiki_graph <-data.frame(v1=c(1,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,6),
+#' v2=c(2,3,6,1,3,4,1,2,4,6,2,3,5,4,6,1,3,5),
+#' w=c(7,9,14,7,10,15,9,10,11,2,15,11,6,6,9,14,2,9))
+#' dijkstra(wiki_graph, 1)
+#' dijkstra(wiki_graph, 3)
+
+
+dijkstra <- function(graph, init_node){
+
+  # First, we must create a vector containing the unique nodes in the graph
+  # and ensure that init_node is in said vector:
+  vector_list <- unique(graph[[1]])
+  if(init_node %in% vector_list == FALSE){
+    stop("Error: init_node not in vector list")
+  }
+
+  # Next, we create a matrix representation of the graph where rows represent
+  # the starting node, columns represent the destination node, and each entry
+  # is the weight of that edge. Entries without an edge are marked with NA:
+  na_vector <- rep(NA, (length(vector_list) * length(vector_list)))
+  graph_matrix <- matrix(na_vector, nrow = length(vector_list))
+  for (i in 1:nrow(graph)){
+    graph_matrix[graph[,1][i], graph[,2][i]] = graph[,3][i]
+  }
+
+  # Then, we define some variables that will help us get to our output:
+  # - distance_vector is our output, the vector of smallest distances. The
+  #   entry for init_mode is set to zero.
+  # - visit_list helps us keep track of what nodes have been visited and
+  #   lets the loop know when to break
+  # - neighbor_vec helps tell the loop what node should be visited next
+  # - node is the current node being visited, initially set to init_mode
+  # - n is an iterative variable for neighbor_vec, it helps ensure that we
+  #   visit the closest neighbors first.
+  distance_vector <- rep(Inf, length(vector_list))
+  distance_vector[init_node] = 0
+  visit_list <- rep(FALSE, length(vector_list))
+  neighbor_vec = c()
+  node <- init_node
+  n = 0
+
+  # Finally, we use a nested loop to implement our algorithm. The outer loop
+  # keeps track if any nodes still need to be visited, while the inner loop
+  # uses info from distance_vector and graph_matrix to calculate the shortest
+  # paths and place them in distance_vector:
+  while (FALSE %in% visit_list){
+
+    for (j in 1:length(vector_list)){
+
+      if (!is.na(graph_matrix[node, j])){
+        distance = graph_matrix[node, j] + distance_vector[node]
+
+        if (visit_list[j] == FALSE){
+          neighbor_vec = append(neighbor_vec, j)
+        }
+
+        if (distance < distance_vector[j]){
+          distance_vector[j] = distance
+        }
+      } else {
+        distance_vector[j] = distance_vector[j]
+      }
+    }
+
+    # Once we are done with each visit (iteration of the for loop), we mark
+    # the current node as visited and make the next node listed in
+    # neighbor_vec the new current node
+    visit_list[node] = TRUE
+    n = n + 1
+    node = neighbor_vec[n]
+  }
+
+  # Now that the algorithm has been completed, we return distance_vector
+  # as our output:
+  return(distance_vector)
+}
+
+
+
+
+
+
+
+
+
+
+
