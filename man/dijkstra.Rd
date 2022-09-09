@@ -19,7 +19,9 @@ every other vector from the initial vector.
 }
 \description{
 A version of Dijkstra's algorithm that measures the shortest distance from
-one vector to another on a given graph.
+one vector to another on a given graph. For more information about
+Dijkstra's algorithm, please read the following article:
+\url{https://en.wikipedia.org/wiki/Dijkstra\%27s_algorithm}
 }
 \examples{
 v1 <-  c(1,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,6)

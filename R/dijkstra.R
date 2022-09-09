@@ -1,7 +1,9 @@
 #' dijkstra
 #'
 #' A version of Dijkstra's algorithm that measures the shortest distance from
-#' one vector to another on a given graph.
+#' one vector to another on a given graph. For more information about
+#' Dijkstra's algorithm, please read the following article:
+#' <https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm>
 #'
 #' @param graph A data frame with three columns: v1 (the starting vector),
 #' v2 (the ending vector), and w (the weight of the edge between both vectors)
