@@ -7,21 +7,26 @@
 dijkstra(graph, init_node)
 }
 \arguments{
-\item{graph}{A data frame with three columns: v1, v2, w}
+\item{graph}{A data frame with three columns: v1 (the starting vector),
+v2 (the ending vector), and w (the weight of the edge between both vectors)}
 
-\item{init_node}{The starting vector that we are measuring from}
+\item{init_node}{The starting vector from where we will start measuring
+on the graph}
 }
 \value{
 Returns a vector with the shortest distances in the graph to
 every other vector from the initial vector.
 }
 \description{
-dijkstra
+A version of Dijkstra's algorithm that measures the shortest distance from
+one vector to another on a given graph.
 }
 \examples{
-wiki_graph <-data.frame(v1=c(1,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,6),
-v2=c(2,3,6,1,3,4,1,2,4,6,2,3,5,4,6,1,3,5),
-w=c(7,9,14,7,10,15,9,10,11,2,15,11,6,6,9,14,2,9))
-dijkstra(wiki_graph, 1)
-dijkstra(wiki_graph, 3)
+v1 <-  c(1,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,6)
+v2 <-  c(2,3,6,1,3,4,1,2,4,6,2,3,5,4,6,1,3,5)
+w <-  c(7,9,14,7,10,15,9,10,11,2,15,11,6,6,9,14,2,9)
+example_graph <- data.frame(v1, v2, w)
+
+dijkstra(example_graph, 1)
+dijkstra(example_graph, 3)
 }
