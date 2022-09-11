@@ -15,7 +15,10 @@ euclidean(a, b)
 Return the greatest common divisor of the parameters a and b
 }
 \description{
-Euclidean
+Euclidean algorithm is the first algorithm to find the
+greatest common divisor of two number. for more information
+please refer to the following article
+url - \url{https://en.wikipedia.org/wiki/Euclidean_algorithm}
 }
 \examples{
 euclidean(123612, 13892347912)

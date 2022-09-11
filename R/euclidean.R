@@ -1,5 +1,10 @@
 #' Euclidean
 #'
+#' Euclidean algorithm is the first algorithm to find the
+#' greatest common divisor of two number. for more information
+#' please refer to the following article
+#' url - <https://en.wikipedia.org/wiki/Euclidean_algorithm>
+#'
 #' @param a A numeric scalar
 #' @param b A numeric scalar
 #'
