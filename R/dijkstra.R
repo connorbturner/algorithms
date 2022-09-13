@@ -39,6 +39,12 @@ dijkstra <- function(graph, init_node){
     stop("Error: graph must contain only 3 columns")
   }
 
+  if (names(graph[1]) != "v1" ||
+      names(graph[2]) != "v2" ||
+      names(graph[3]) != "w"){
+    stop("Incorrect column names")
+  }
+
   stopifnot(is.numeric(graph[[1]]) &&
               is.numeric(graph[[2]]) &&
               is.numeric(graph[[3]]))
