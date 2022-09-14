@@ -16,6 +16,11 @@
 #' euclidean(100, 1000)
 #'
 euclidean <- function(a,b){
+
+  if(!is.numeric(a) || !is.numeric(b)){
+    stop("Error: a and b should be numeric scalars")
+  }
+
   # while loop runs b != 0
   while (b != 0){
     # value of b is assigned to a temp variable
